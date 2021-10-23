@@ -39,11 +39,15 @@ public class NoteObject : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "Activator")
+        if (gameObject.activeSelf)
         {
-            canBePressed = false;
 
-            GameManager.instance.NoteMissed();
+            if (other.tag == "Activator")
+            {
+                canBePressed = false;
+
+                GameManager.instance.NoteMissed();
+            }
         }
     }
 }
