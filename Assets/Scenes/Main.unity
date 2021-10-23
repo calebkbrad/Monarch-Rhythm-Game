@@ -2255,7 +2255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1605572179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,6 +2372,11 @@ MonoBehaviour:
   theMusic: {fileID: 1731741212}
   startPlaying: 0
   bs: {fileID: 391481315}
+  currentScore: 0
+  scorePerNote: 100
+  scoreMulti: 1
+  scoreText: {fileID: 1791990394}
+  multiText: {fileID: 2046179001}
 --- !u!4 &1622349477
 Transform:
   m_ObjectHideFlags: 0
