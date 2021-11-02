@@ -15,7 +15,12 @@ public class GameManager : MonoBehaviour
 
     public int currentScore;
     public int scorePerNote = 100;
+    public int scorePerGood = 125;
+    public int scorePerPerfect = 150;
     public int scoreMulti = 1;
+
+    public int[] multiThresholds;
+    public int noteStreak;
 
     public Text scoreText;
     public Text multiText;
@@ -48,19 +53,42 @@ public class GameManager : MonoBehaviour
 
     public void NoteHit()
     {
-        Debug.Log("Hit on time!");
         // Increment and update multiplier
-        scoreMulti += 1;
-        multiText.text = "Multiplier: x" + scoreMulti;
+        noteStreak++;
+        if(noteStreak == multiThresholds[scoreMulti])
+        {
+            scoreMulti += 1;
+            multiText.text = "Multiplier: x" + scoreMulti;
+        }
+        
         // Increment and update score
-        currentScore += scorePerNote * scoreMulti;
+        // currentScore += scorePerNote * scoreMulti;
         scoreText.text = "Score: " + currentScore;
+    }
+
+    public void NormalHit() 
+    {
+        currentScore += scorePerNote * scoreMulti;
+        NoteHit();
+    }
+
+    public void GoodHit() 
+    {
+        currentScore += scorePerGood * scoreMulti;
+        NoteHit();
+    }
+
+    public void PerfectHit() 
+    {
+        currentScore += scorePerPerfect * scoreMulti;
+        NoteHit();
     }
 
     public void NoteMissed()
     {
         Debug.Log("You missed!");
         // Reset the multiplier
+        noteStreak = 0;
         scoreMulti = 1;
         multiText.text = "Multiplier: x" + scoreMulti;
     }
